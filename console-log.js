@@ -2,10 +2,12 @@
 var DEBUG = true;
 
 // Fonction custom de console.log
-function _log(_var) {
-	var e = new Error(_var),
-		line = e.stack,
-		lines = line.split("\n");
+function _log(a, b, c, d) {
+	var args        = (arguments.length === 1 ? arguments[0] : Array.apply(null, arguments)),
+		e       = new Error(),
+		_line   = e.stack,
+		_lines  = _line.split("\n"),
+	    	_trace  = _lines[2].substring(_lines[2].indexOf('('), _lines[2].lastIndexOf(')') + 1);
 
-	return (DEBUG === true) ? console.log(_var, lines[2].substring(lines[2].indexOf('('), lines[2].lastIndexOf(')') + 1)) : null;
+	return (DEBUG === true) ? console.log('CONSOLE =>', args, _trace) : null;
 }
